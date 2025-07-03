@@ -1,0 +1,16 @@
+version: "3.9"
+
+services:
+  web:
+    build: .
+    volumes:
+      - ./:/app                # your code
+      - /app/node_modules     # keep container’s node_modules, don’t overwrite
+    ports:
+      - "5173:5173"
+    environment:
+      # if watching fails on Windows mounts, poll:
+      CHOKIDAR_USEPOLLING: "true"
+    # uses the CMD from your Dockerfile
+
+# docker compose up
